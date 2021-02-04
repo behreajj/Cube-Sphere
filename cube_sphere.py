@@ -361,6 +361,7 @@ class CubeSphereMaker(bpy.types.Operator):
             bvl_mod.miter_outer = "MITER_ARC"
             bvl_mod.segments = self.bevel_segs
             bvl_mod.harden_normals = self.auto_normals
+            bvl_mod.show_in_editmode = False
 
         context.scene.collection.objects.link(mesh_obj)
         return {"FINISHED"}
