@@ -156,13 +156,29 @@ class ObjMesh:
 
         for i in i_range:
             v = self.vs[i]
-            mag_sq = v[0] ** 2 + v[1] ** 2 + v[2] ** 2
-            if mag_sq > 0.0:
-                mag_inv = mag_sq ** -0.5
-                rad_m_inv = verif_rad * mag_inv
-                self.vs[i] = (rad_m_inv * v[0],
-                              rad_m_inv * v[1],
-                              rad_m_inv * v[2])
+            x = v[0]
+            y = v[1]
+            z = v[2]
+
+            xsq = x * x
+            ysq = y * y
+            zsq = z * z
+
+            xsq_2 = xsq * 0.5
+            ysq_2 = ysq * 0.5
+            zsq_2 = zsq * 0.5
+
+            one_third = 0.3333333333333333
+            xn = x * ((1.0 - (ysq_2 + zsq_2)
+                + ysq * zsq * one_third) ** 0.5)
+            yn = y * ((1.0 - (zsq_2 + xsq_2)
+                + zsq * xsq * one_third) ** 0.5)
+            zn = z * ((1.0 - (xsq_2 + ysq_2)
+                + xsq * ysq * one_third) ** 0.5)
+
+            self.vs[i] = (verif_rad * xn,
+                          verif_rad * yn,
+                          verif_rad * zn)
 
         return self
 
@@ -233,8 +249,8 @@ class ObjMesh:
 bl_info = {
     "name": "Create Cube Sphere",
     "author": "Jeremy Behreandt",
-    "version": (0, 1),
-    "blender": (2, 91, 0),
+    "version": (0, 2),
+    "blender": (2, 93, 5),
     "category": "Add Mesh",
     "description": "Creates a hard surface modeling friendly Cube Sphere.",
     "tracker_url": "https://github.com/behreajj/Cube-Sphere/"

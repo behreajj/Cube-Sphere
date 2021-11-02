@@ -2,7 +2,7 @@
 
 ![Screen Capture](screenCap.png)
 
-Blender add-on to create a hard surface modeling friendly cube sphere.
+Blender add-on to create a hard surface modeling friendly cube sphere. Maps points on a cube to that on a sphere using the algorithm described [here](https://math.stackexchange.com/questions/118760/can-someone-please-explain-the-cube-to-sphere-mapping-formula-to-me).
 
 To install, go to `Edit > Preferences > Add-ons`, then click the `Install` button and select the `cube-sphere.py` file. To add a sphere, go to `Add > Mesh > Cube Sphere` while in object mode.
 
