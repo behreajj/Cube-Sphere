@@ -242,6 +242,33 @@ class ObjMesh:
                 (9, 8, 0, 1),
                 (4, 5, 3, 2),
                 (2, 3, 6, 7)]
+        elif profile == "DIAGONAL":
+            one_third =  0.3333333333333333
+            two_thirds = 0.6666666666666667
+
+            vts = [
+                (two_thirds, 1.0),
+                (1.0, 1.0),
+                (one_third, 0.75),
+                (two_thirds, 0.75),
+                (1.0, 0.75),
+                (0.0, 0.5),
+                (one_third, 0.5),
+                (two_thirds, 0.5),
+                (1.0, 0.5),
+                (0.0, 0.25),
+                (one_third, 0.25),
+                (two_thirds, 0.25),
+                (0.0, 0.0),
+                (one_third, 0.0)]
+
+            vt_idcs = [
+                (7, 6, 2, 3),
+                (6, 10, 9, 5),
+                (8, 7, 3, 4),
+                (3, 0, 1, 4),
+                (12, 9, 10, 13),
+                (11, 10, 6, 7)]
 
         return ObjMesh(vs=vs, vts=vts, v_idcs=v_idcs, vt_idcs=vt_idcs, name=name)
 
@@ -305,7 +332,8 @@ class CubeSphereMaker(bpy.types.Operator):
     uv_profile: EnumProperty(
         items=[
             ("CROSS", "Cross", "UVs form a cross pattern", 1),
-            ("FACE", "Per Face", "A rectangle per face", 2)],
+            ("DIAGONAL", "Diagonal", "UVs form a diagonal pattern", 2),
+            ("FACE", "Per Face", "A rectangle per face", 3)],
         name="UV Profile",
         default="FACE",
         description="How to distribute texture coordinates")
