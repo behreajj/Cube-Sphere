@@ -275,7 +275,7 @@ bl_info = {
     "name": "Create Cube Sphere",
     "author": "Jeremy Behreandt",
     "version": (0, 2),
-    "blender": (4, 0, 1),
+    "blender": (4, 1, 0),
     "category": "Add Mesh",
     "description": "Creates a hard surface modeling friendly Cube Sphere.",
     "tracker_url": "https://github.com/behreajj/Cube-Sphere/"
