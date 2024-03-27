@@ -1,6 +1,4 @@
 import bpy
-import math
-import mathutils
 import bmesh
 from bpy.props import (
     IntProperty,
@@ -277,7 +275,7 @@ bl_info = {
     "name": "Create Cube Sphere",
     "author": "Jeremy Behreandt",
     "version": (0, 2),
-    "blender": (2, 93, 5),
+    "blender": (4, 0, 1),
     "category": "Add Mesh",
     "description": "Creates a hard surface modeling friendly Cube Sphere.",
     "tracker_url": "https://github.com/behreajj/Cube-Sphere/"
@@ -309,20 +307,6 @@ class CubeSphereMaker(bpy.types.Operator):
         name="Shade Smooth",
         description="Whether to use smooth shading",
         default=True)
-
-    auto_normals: BoolProperty(
-        name="Auto Smooth",
-        description="Auto smooth (based on smooth/sharp faces/edges and angle between faces)",
-        default=True)
-
-    auto_angle: FloatProperty(
-        name="Auto Smooth Angle",
-        description="Maximum angle between face normals that will be considered as smooth",
-        subtype="ANGLE",
-        min=0.0,
-        max=3.14159,
-        step=100,
-        default=0.523599)
 
     calc_uvs: BoolProperty(
         name="Calc UVs",
@@ -364,8 +348,6 @@ class CubeSphereMaker(bpy.types.Operator):
         mesh_data = bpy.data.meshes.new(sphere.name)
         mesh_data.from_pydata(sphere.vs, [], sphere.v_idcs)
         mesh_data.validate(verbose=True)
-        mesh_data.use_auto_smooth = self.auto_normals
-        mesh_data.auto_smooth_angle = self.auto_angle
 
         bm = bmesh.new()
         bm.from_mesh(mesh_data)
@@ -404,7 +386,6 @@ class CubeSphereMaker(bpy.types.Operator):
             bvl_mod.angle_limit = 0.523599
             bvl_mod.miter_outer = "MITER_ARC"
             bvl_mod.segments = self.bevel_segs
-            bvl_mod.harden_normals = self.auto_normals
             bvl_mod.show_in_editmode = False
 
         context.scene.collection.objects.link(mesh_obj)
