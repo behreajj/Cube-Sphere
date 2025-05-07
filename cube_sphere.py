@@ -294,24 +294,24 @@ class CubeSphereMaker(bpy.types.Operator):
         description="Number of subdivisions",
         min=1,
         soft_max=16,
-        default=3)
+        default=3) # type: ignore
 
     radius: FloatProperty(
         name="Radius",
         description="Sphere radius",
         min=0.0001,
         soft_max=100.0,
-        default=0.5)
+        default=0.5) # type: ignore
 
     shade_smooth: BoolProperty(
         name="Shade Smooth",
         description="Whether to use smooth shading",
-        default=True)
+        default=True) # type: ignore
 
     calc_uvs: BoolProperty(
         name="Calc UVs",
         description="Calculate texture coordinates",
-        default=True)
+        default=True) # type: ignore
 
     uv_profile: EnumProperty(
         items=[
@@ -320,14 +320,14 @@ class CubeSphereMaker(bpy.types.Operator):
             ("FACE", "Per Face", "A rectangle per face", 3)],
         name="UV Profile",
         default="FACE",
-        description="How to distribute texture coordinates")
+        description="How to distribute texture coordinates") # type: ignore
 
     bevel_segs: IntProperty(
         name="Bevel Segments",
         description="Number of bevel segments",
         min=0,
         soft_max=16,
-        default=0)
+        default=0) # type: ignore
 
     bevel_amt: FloatProperty(
         name="Bevel Amount",
@@ -336,7 +336,7 @@ class CubeSphereMaker(bpy.types.Operator):
         soft_max=100.0,
         default=0.0,
         step=1,
-        precision=3)
+        precision=3) # type: ignore
 
     def execute(self, context):
         sphere = ObjMesh.cube_sphere(
