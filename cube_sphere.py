@@ -1,6 +1,6 @@
-import bpy
-import bmesh
-from bpy.props import (
+import bpy # type: ignore
+import bmesh # type: ignore
+from bpy.props import ( # type: ignore
     IntProperty,
     BoolProperty,
     EnumProperty,
@@ -410,7 +410,7 @@ class CubeSphereMaker(bpy.types.Operator):
         mesh_obj = bpy.data.objects.new(mesh_data.name, mesh_data)
         mesh_obj.location = context.scene.cursor.location
 
-        context.scene.collection.objects.link(mesh_obj)
+        context.collection.objects.link(mesh_obj)
 
         return {"FINISHED"}
 
