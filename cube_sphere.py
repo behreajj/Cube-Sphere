@@ -388,7 +388,7 @@ class CubeSphereMaker(bpy.types.Operator):
             bvl_mod.segments = self.bevel_segs
             bvl_mod.show_in_editmode = False
 
-        context.scene.collection.objects.link(mesh_obj)
+        context.collection.objects.link(mesh_obj)
         return {"FINISHED"}
 
     def execute_old(self, context):
